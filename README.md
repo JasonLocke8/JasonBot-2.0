@@ -9,3 +9,4 @@ npm run build (pasa de TypeScript a JS para un rendimiento mas óptimo)
 Después de hacer el build:
 
 npm start
+
