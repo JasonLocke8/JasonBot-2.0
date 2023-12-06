@@ -2,15 +2,13 @@ import { PermissionFlagsBits } from "discord.js";
 import { Command } from "../types";
 
 const command : Command = {
-    name: "jason",
+    name: "jeremy",
     execute: (message, args) => {
         let toGreet = message.mentions.members?.first()
-        message.channel.send(`Hola, ${toGreet ? toGreet.user.username : message.member?.user.username}! Volvió el peor bot de todo Discord!
-        
-Para ver los comandos ingresa: -comandos`)
+        message.channel.send(`¿Jeremy? Tremeeeendo puto`)
     },
     cooldown: 10,
-    aliases: ["j"],
+    aliases: ["jere"],
     permissions: ["Administrator", PermissionFlagsBits.ManageEmojisAndStickers] // to test
 }
 

@@ -7,7 +7,7 @@ const event : BotEvent = {
     once: true,
     execute: (client : Client) => {
         console.log(
-            color("text", `💪 Logged in as ${color("variable", client.user?.tag)}`)
+            color("text", `${color("variable", client.user?.tag)} conectado :)`)
         )
     }
 }

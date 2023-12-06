@@ -32,8 +32,8 @@ module.exports = (client : Client) => {
         body: slashCommands.map(command => command.toJSON())
     })
     .then((data : any) => {
-        console.log(color("text", `🔥 Successfully loaded ${color("variable", data.length)} slash command(s)`))
-        console.log(color("text", `🔥 Successfully loaded ${color("variable", commands.length)} command(s)`))
+        console.log(color("text", `${color("variable", data.length)} comando(s) con barra ✅`))
+        console.log(color("text", `${color("variable", commands.length)} comando(s) con prefijo ✅`))
     }).catch(e => {
         console.log(e)
     })
