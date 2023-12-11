@@ -9,6 +9,7 @@ const command : Command = {
     },
     cooldown: 10,
     aliases: ["sayhello"],
+    description: "Saluda a quien lo invóca",
     permissions: ["Administrator", PermissionFlagsBits.ManageEmojisAndStickers] // to test
 }
 

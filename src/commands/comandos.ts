@@ -3,6 +3,7 @@ import { Command } from "../types";
 
 const command : Command = {
     name: "comandos",
+    category: "Info",
     execute: (message, args) => {
         message.channel.send(`Los comandos disponibles son los siguientes:
         
@@ -14,7 +15,9 @@ const command : Command = {
 **-jeremy** No hay mucho que explicar...`)
     },
     cooldown: 20,
-    aliases: ["c"],
+    aliases: ["ayuda", "cmd", "cmds"],
+    usage: "comando [comando]",
+    description: "Página de ayuda, donde se muestran los comandos o explica un comando en específico",
     permissions: ["Administrator", PermissionFlagsBits.ManageEmojisAndStickers] // to test
 }
 

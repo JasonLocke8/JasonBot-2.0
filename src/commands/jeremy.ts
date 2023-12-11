@@ -9,6 +9,7 @@ const command : Command = {
     },
     cooldown: 10,
     aliases: ["jere"],
+    description: "Información sobre Jeremy",
     permissions: ["Administrator", PermissionFlagsBits.ManageEmojisAndStickers] // to test
 }
 

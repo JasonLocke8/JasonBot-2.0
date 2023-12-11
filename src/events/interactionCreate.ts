@@ -10,7 +10,7 @@ const event : BotEvent = {
             if (!command) return;
             if (command.cooldown && cooldown) {
                 if (Date.now() < cooldown) {
-                    interaction.reply(`You have to wait ${Math.floor(Math.abs(Date.now() - cooldown) / 1000)} second(s) to use this command again.`)
+                    interaction.reply(`Tenes que esperar ${Math.floor(Math.abs(Date.now() - cooldown) / 1000)} segundo(s) para usar este comando de vuelta.`)
                     setTimeout(() => interaction.deleteReply(), 5000)
                     return
                 }
@@ -25,7 +25,7 @@ const event : BotEvent = {
         } else if (interaction.isAutocomplete()) {
             const command = interaction.client.slashCommands.get(interaction.commandName);
             if (!command) {
-                console.error(`No command matching ${interaction.commandName} was found.`);
+                console.error(`El comando ${interaction.commandName} no se encontró.`);
                 return;
             }
             try {
@@ -37,7 +37,7 @@ const event : BotEvent = {
         } else if (interaction.isModalSubmit()) {
             const command = interaction.client.slashCommands.get(interaction.customId);
             if (!command) {
-                console.error(`No command matching ${interaction.customId} was found.`);
+                console.error(`El comando ${interaction.customId} no se encontró.`);
                 return;
             }
             try {

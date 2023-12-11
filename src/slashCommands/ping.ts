@@ -5,14 +5,14 @@ import { SlashCommand } from "../types";
 const command : SlashCommand = {
     command: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Shows the bot's ping")
+    .setDescription("Muestra el ping con el bot.")
     ,
     execute: interaction => {
         interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setAuthor({name: "MRC License"})
-                .setDescription(`🏓 Pong! \n 📡 Ping: ${interaction.client.ws.ping}`)
+                .setAuthor({name: "JasonBot"})
+                .setDescription(`${interaction.client.ws.ping} ms`)
                 .setColor(getThemeColor("text"))
             ]
         })
