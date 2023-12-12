@@ -38,23 +38,23 @@ const command : Command = {
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt8afb5b8145f5e9b2/5ebc46f7b8c49976b71c0bc5/haven-featured.png')
         } else if (args[0] == "ascent") {
             embedMap.setTitle('🗺️ Ascent')
-            embedMap.addFields({ name: '- Raze\n- Omen (o Brimstone)\n- Chypher\n- Skye\n- Sova', value: '\u200B' })
+            embedMap.addFields({ name: '- Raze\n- Brimstone\n- Killjoy (o Chyper)\n- Skye (o Kay-o)\n- Sova', value: '\u200B' })
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blta9b912e1a1b59aa4/5ebc471cfa550001f72bcb13/ascent-featured.png')
         } else if (args[0] == "icebox") {
             embedMap.setTitle('🗺️ IceBox')
-            embedMap.addFields({ name: '- Raze\n- Omen (o Brimstone)\n- Chypher\n- Skye\n- Sova', value: '\u200B' })
+            embedMap.addFields({ name: '- Raze (o Reyna)\n- Viper (o Brimstone u Omen)\n- Killjoy\n- Sage\n- Sova', value: '\u200B' })
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltde02911a015d7ef9/5f80d2851f5f6d4173b4e49d/Icebox_transparentbg_for_Web.png')
         } else if (args[0] == "split") {
             embedMap.setTitle('🗺️ Split')
-            embedMap.addFields({ name: '- Raze\n- Omen (o Brimstone)\n- Chypher\n- Skye\n- Sova', value: '\u200B' })
+            embedMap.addFields({ name: '- Raze (o Reyna)\n- Omen (o Brimstone)\n- Chypher (o Killjoy)\n- Kay-o (o Skye)\n- Sova (o Fade)', value: '\u200B' })
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltd188c023f88f7d91/5ebc46db20f7727335261fcd/split-featured.png')
         } else if (args[0] == "fracture") {
             embedMap.setTitle('🗺️ Fracture')
-            embedMap.addFields({ name: '- Raze\n- Omen (o Brimstone)\n- Chypher\n- Skye\n- Sova', value: '\u200B' })
+            embedMap.addFields({ name: '- Neon (o Raze)\n- Viper (o Harbor)\n- Killjoy (o Chypher)\n- Breach\n- Sova', value: '\u200B' })
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltf4485163c8c5873c/6131b23e9db95e7ff74b6393/Valorant_FRACTURE_Minimap_Alpha_web.png')
         } else if (args[0] == "breeze") {
             embedMap.setTitle('🗺️ Breeze')
-            embedMap.addFields({ name: '- Raze\n- Omen (o Brimstone)\n- Chypher\n- Skye\n- Sova', value: '\u200B' })
+            embedMap.addFields({ name: '- Neon\n- Viper\n- Chypher\n- Skye (o Kay-o)\n- Sova', value: '\u200B' })
             embedMap.setImage('https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/bltb03d2e4867f2e324/607f995892f0063e5c0711bd/breeze-featured_v1.png')
         }
         
