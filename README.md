@@ -4,7 +4,7 @@ Volvió el peor bot de Discord!
 
 Antes de ejecutar el bot:
 
-npm run build (pasa de TypeScript a JS para un rendimiento mas óptimo)
+npm run build
 
 Después de hacer el build:
 
