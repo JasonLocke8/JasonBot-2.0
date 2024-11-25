@@ -6,7 +6,7 @@ const command : Command = {
     category: "Info",
     execute: (message, args) => {
         let toGreet = message.mentions.members?.first()
-        message.channel.send(`Hola, ${toGreet ? toGreet.user.username : message.member?.user.username}! Volvió el peor bot de todo Discord! \n Para ver los comandos ingresa: -comandos`)
+        message.channel.send(`Hola, ${toGreet ? toGreet.user.username : message.member?.user.username}! Volvió el peor bot de todo Discord! \nPara ver los comandos ingresa: -comandos`)
     },
     cooldown: 10,
     aliases: ["j"],

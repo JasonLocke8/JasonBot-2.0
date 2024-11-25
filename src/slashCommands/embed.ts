@@ -88,8 +88,7 @@ const command: SlashCommand = {
         .setDescription(options.description.toString())
         .setAuthor({ name: interaction.client.user?.username || 'Default Name', iconURL: interaction.client.user?.avatarURL() || undefined })
         .setThumbnail(interaction.client.user?.avatarURL() || null)
-        .setTimestamp()
-        .setFooter({ text: "Test embed message", iconURL: interaction.client.user?.avatarURL() || undefined });
+        .setFooter({ text: "via JasonBot", iconURL: interaction.client.user?.avatarURL() || undefined });
       let selectedTextChannel = interaction.channel?.client.channels.cache.get(options.channel.toString()) as TextChannel
       selectedTextChannel.send({ embeds: [embed] });
       return interaction.editReply({ content: "Embed message successfully sent." })
