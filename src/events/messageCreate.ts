@@ -8,7 +8,7 @@ const event: BotEvent = {
     execute: async (message: Message) => {
         if (!message.member || message.member.user.bot) return;
         if (!message.guild) return;
-        let prefix = process.env.PREFIX
+        let prefix = "-";
         if (mongoose.connection.readyState === 1) {
             let guildPrefix = await getGuildOption(message.guild, "prefix") 
                 if (guildPrefix) prefix = guildPrefix;
@@ -31,8 +31,8 @@ const event: BotEvent = {
         if (neededPermissions !== null)
             return sendTimedMessage(
                 `
-            You don't have enough permissions to use this command. 
-            \n Needed permissions: ${neededPermissions.join(", ")}
+            No tienes permisos para usar este comando. 
+            \n Permisos requeridos: ${neededPermissions.join(", ")}
             `,
                 message.channel,
                 5000
@@ -42,7 +42,7 @@ const event: BotEvent = {
         if (command.cooldown && cooldown) {
             if (Date.now() < cooldown) {
                 sendTimedMessage(
-                    `You have to wait ${Math.floor(Math.abs(Date.now() - cooldown) / 1000)} second(s) to use this command again.`,
+                    `Tienes que esperar ${Math.floor(Math.abs(Date.now() - cooldown) / 1000)} segundo(s) para usar este comando de vuelta.`,
                     message.channel,
                     5000
                 )

@@ -9,13 +9,14 @@ const ClearCommand : SlashCommand = {
         return option
         .setMaxValue(100)
         .setMinValue(1)
-        .setName("messagecount")
+        .setName("cantidad")
         .setDescription("Cantidad de mensajes a borrar")
+        .setRequired(true)
     })
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
     execute: interaction => {
-        let messageCount = Number(interaction.options.get("messagecount")?.value)
-        interaction.channel?.messages.fetch({limit: messageCount})
+        let cantidad = Number(interaction.options.get("cantidad")?.value)
+        interaction.channel?.messages.fetch({limit: cantidad})
         .then(async msgs => {
             if(interaction.channel?.type === ChannelType.DM) return;
             const deletedMessages = await interaction.channel?.bulkDelete(msgs,true)   
