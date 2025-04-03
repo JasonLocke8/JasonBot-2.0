@@ -4,11 +4,16 @@ import {
   Collection,
   PermissionFlagsBits,
 } from "discord.js";
-const { Guilds, MessageContent, GuildMessages, GuildMembers } =
+const { Guilds, MessageContent, GuildMessages, GuildMessageReactions, GuildMembers} =
   GatewayIntentBits;
 const client = new Client({
-  intents: [Guilds, MessageContent, GuildMessages, GuildMembers],
-});
+  intents: [
+    Guilds,
+    GuildMessages,
+    MessageContent,
+    GuildMessageReactions,
+    GuildMembers,
+  ],});
 import { Command, SlashCommand } from "./types";
 import { config } from "dotenv";
 import { readdirSync } from "fs";

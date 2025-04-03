@@ -6,7 +6,16 @@ const command: Command = {
   category: "Info",
   execute: (message, args) => {
     message.channel.send(
-      `Los comandos disponibles son los siguientes:\n\n**-jason** Pequeño saludo del bot.\n**-lan** Información sobre la siguiente LAN\n**-lineup (agente) (mapa)** Muestra varios lineups de ese Agente en ese Mapa (en proceso)\n\nTambién existen los comandos con "/" como:\n\n**/valorant (mapa)** Muestra un posible team de ese mapa\n**/clip** Muestra tu clip para que lo voten`
+      `Los comandos disponibles son los siguientes:\n\n
+      **-jason** Pequeño saludo del bot.\n
+      **-lan** Información sobre la siguiente LAN\n
+      **-lineup (agente) (mapa)** Muestra varios lineups de ese Agente en ese Mapa (en proceso)\n\n
+      También existen los comandos con "/" como:\n\n
+      **/clear (número)** Borra X mensajes\n
+      **/ping** Muestra el ping del bot\n
+      **/clip** Muestra tu clip para que lo voten\n
+      **/valorant (mapa)** Muestra un posible team de ese mapa
+      `
     );
   },
   cooldown: 20,
