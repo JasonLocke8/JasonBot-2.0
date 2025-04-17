@@ -9,8 +9,7 @@ import {
 import { getThemeColor } from "../functions";
 import { SlashCommand } from "../types";
 import { trusted } from "mongoose";
-
-let torneoMessageId: string | null = null; // Variable para almacenar el ID del mensaje del torneo
+import Torneo from "../schemas/Torneo";
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -41,6 +40,8 @@ const command: SlashCommand = {
       const nombre = interaction.options.getString("nombre");
       const cantidadEquipos = interaction.options.getInteger("cantidadequipos");
       const juego = interaction.options.getString("juego");
+      const canalId = interaction.channel?.id;
+
       const emojis = [
         "🐵",
         "🐶",
@@ -77,7 +78,7 @@ const command: SlashCommand = {
       }
 
       await interaction.reply({
-        content: `🏆 Torneo "${nombre}" creado con éxito. Participarán ${cantidadEquipos} equipos y se jugará ${juego}.`,
+        content: `🏆 Torneo "${nombre}" creado con éxito. Participarán ${cantidadEquipos} equipos y se jugará ${juego}. Para eliminarlo, usa **/eliminarTorneo**.`,
         ephemeral: true,
       });
 
@@ -95,34 +96,20 @@ const command: SlashCommand = {
         .setColor(0x00ff00)
         .setTimestamp();
 
-
-
-
-
-
-
       const sentMessage = await interaction.channel?.send({ embeds: [embed] });
       if (sentMessage) {
-        // Guardar el ID del mensaje para identificarlo más tarde
-        torneoMessageId = sentMessage.id; // Guardar el ID del mensaje del torneo
-
-        const embedMessageId = sentMessage.id;
+        const nuevoTorneo = new Torneo({
+          nombre,
+          juego,
+          cantidadEquipos,
+          mensajeId: sentMessage.id,
+          canalId,
+        });
+        await nuevoTorneo.save();
 
         for (const emoji of emojis.slice(0, cantidadEquipos)) {
           await sentMessage.react(emoji);
         }
-
-        console.log(`Embed del torneo creado con ID: ${embedMessageId}`);
-
-
-
-
-
-
-
-
-
-
       }
     } catch (error) {
       console.error(error);
