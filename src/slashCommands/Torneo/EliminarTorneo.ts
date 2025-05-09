@@ -3,8 +3,9 @@ import {
   TextChannel,
   AutocompleteInteraction,
 } from "discord.js";
-import { SlashCommand } from "../types";
-import Torneo from "../schemas/Torneo";
+import mongoose from "mongoose"; // Importar mongoose para manejar la conexión
+import { SlashCommand } from "../../types";
+import Torneo from "../../schemas/Torneo";
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -19,29 +20,29 @@ const command: SlashCommand = {
     .setDescription("Elimina un torneo y todos los roles asociados."),
   execute: async (interaction) => {
     try {
+      // Defer the reply to avoid timeout issues
+      await interaction.deferReply({ ephemeral: true });
+
       const torneoNombre = interaction.options.getString("nombre");
       if (!torneoNombre) {
-        await interaction.reply({
+        await interaction.editReply({
           content: "Debes proporcionar el nombre del torneo.",
-          ephemeral: true,
         });
         return;
       }
 
       const torneo = await Torneo.findOne({ nombre: torneoNombre });
       if (!torneo) {
-        await interaction.reply({
+        await interaction.editReply({
           content: `No se encontró un torneo con el nombre "${torneoNombre}".`,
-          ephemeral: true,
         });
         return;
       }
 
       const guild = interaction.guild;
       if (!guild) {
-        await interaction.reply({
+        await interaction.editReply({
           content: "Este comando solo puede usarse en un servidor.",
-          ephemeral: true,
         });
         return;
       }
@@ -65,19 +66,48 @@ const command: SlashCommand = {
         }
       }
 
+      // Eliminar la categoría y sus canales
+      const categoryName = `Torneo: ${torneoNombre}`;
+      const category = guild.channels.cache.find(
+        (ch) => ch.name === categoryName && ch.type === 4 // Tipo 4: Categoría
+      );
+      if (category) {
+        // Eliminar todos los canales dentro de la categoría
+        const channelsInCategory = guild.channels.cache.filter(
+          (ch) => ch.parentId === category.id
+        );
+        for (const channel of channelsInCategory.values()) {
+          await channel.delete(
+            `Eliminando canal asociado con la categoría "${categoryName}"`
+          );
+        }
+
+        // Eliminar la categoría
+        await category.delete(
+          `Eliminando la categoría asociada con el torneo "${torneoNombre}"`
+        );
+      }
+
       // Eliminar el torneo de la base de datos
       await torneo.deleteOne();
 
-      await interaction.reply({
-        content: `El torneo "${torneoNombre}" y todos los roles asociados han sido eliminados.`,
-        ephemeral: true,
+      // Eliminar la colección del torneo en MongoDB
+      const torneoCollectionName = torneoNombre.toLowerCase().replace(/\s+/g, "_"); // Normalizar el nombre
+      const torneoCollection = mongoose.connection.collection(torneoCollectionName);
+      await torneoCollection.drop().catch((error) => {
+        console.error(`Error al eliminar la colección del torneo "${torneoNombre}":`, error);
+      });
+
+      await interaction.editReply({
+        content: `🏆 El torneo "${torneoNombre}", su categoría, todos los canales, roles asociados y su colección en la base de datos han sido eliminados.`,
       });
     } catch (error) {
       console.error(error);
-      await interaction.reply({
-        content: "Ocurrió un error al intentar eliminar el torneo.",
-        ephemeral: true,
-      });
+      if (!interaction.replied) {
+        await interaction.editReply({
+          content: "Ocurrió un error al intentar eliminar el torneo.",
+        });
+      }
     }
   },
 

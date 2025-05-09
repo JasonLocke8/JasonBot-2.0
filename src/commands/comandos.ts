@@ -8,13 +8,16 @@ const command: Command = {
     message.channel.send(
       `Los comandos disponibles son los siguientes:\n\n
       **-jason** Pequeño saludo del bot.\n
-      **-lan** Información sobre la siguiente LAN\n
-      **-lineup (agente) (mapa)** Muestra varios lineups de ese Agente en ese Mapa (en proceso)\n\n
+      **-lan** Información sobre la siguiente LAN\n\n
       También existen los comandos con "/" como:\n\n
       **/clear (número)** Borra X mensajes\n
       **/ping** Muestra el ping del bot\n
       **/clip** Muestra tu clip para que lo voten\n
-      **/valorant (mapa)** Muestra un posible team de ese mapa
+      **/valorant (mapa)** Muestra un posible team de ese mapa\n
+      **/creartorneo (nombre, juego, cantEquipos)** Crea un torneo\n
+      **/eliminartorneo (nombre)** Elimina un torneo\n
+      **/ingresar (nombreTorneo, KDA)** Ingresa tu KDA a un torneo\n
+      **/mostrar (nombreTorneo)** Muestra el leaderboard del torneo\n
       `
     );
   },
