@@ -1,7 +1,4 @@
-import {
-  SlashCommandBuilder,
-  EmbedBuilder,
-} from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import { SlashCommand } from "../../types";
 import Torneo from "../../schemas/Torneo";
 import mongoose from "mongoose";
@@ -15,6 +12,16 @@ const command: SlashCommand = {
         .setDescription("Nombre del torneo")
         .setRequired(true);
     })
+    .addStringOption((option) =>
+      option
+        .setName("tipo")
+        .setDescription("Tipo de torneo")
+        .setRequired(true)
+        .addChoices(
+          { name: "FPS", value: "FPS" },
+          { name: "Futbol", value: "Futbol" }
+        )
+    )
     .addStringOption((option) => {
       return option
         .setName("juego")
@@ -44,6 +51,7 @@ const command: SlashCommand = {
       const cantidadEquipos = interaction.options.getInteger("cantidadequipos");
       const juego = interaction.options.getString("juego");
       const canalId = interaction.channel?.id;
+      const tipo = interaction.options.getString("tipo");
 
       const emojis = [
         "🐵",
@@ -105,6 +113,7 @@ const command: SlashCommand = {
           nombre,
           juego,
           cantidadEquipos,
+          tipo,
           mensajeId: sentMessage.id,
           canalId,
         });
@@ -120,7 +129,9 @@ const command: SlashCommand = {
 
       // Crear la colección vacía sin insertar documentos
       const db = mongoose.connection.db;
-      const collections = await db.listCollections({ name: torneoCollectionName }).toArray();
+      const collections = await db
+        .listCollections({ name: torneoCollectionName })
+        .toArray();
       if (collections.length === 0) {
         await db.createCollection(torneoCollectionName); // Crear la colección si no existe
       }
@@ -179,7 +190,6 @@ const command: SlashCommand = {
           });
         }
       }
-
     } catch (error) {
       console.error(error);
 

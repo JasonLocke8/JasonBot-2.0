@@ -4,6 +4,7 @@ export interface ITorneo extends Document {
     nombre: string;
     juego: string;
     cantidadEquipos: number;
+    tipo: string;
     mensajeId: string;
     canalId: string;
 }
@@ -13,6 +14,7 @@ const TorneoSchema = new Schema<ITorneo>({
     juego: { type: String, required: true },
     cantidadEquipos: { type: Number, required: true },
     mensajeId: { type: String, required: true },
+    tipo: { type: String, required: true },
     canalId: { type: String, required: true },
 });
 
