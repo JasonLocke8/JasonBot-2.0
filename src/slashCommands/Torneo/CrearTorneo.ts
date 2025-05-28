@@ -168,12 +168,24 @@ const command: SlashCommand = {
           topic: "Canal para mostrar el leaderboard del torneo.",
         });
 
-        await guild.channels.create({
-          name: "ingreso-de-puntos",
-          type: 0, // Tipo de canal: Texto
-          parent: category.id,
-          topic: "Canal para ingresar puntos usando el comando /ingresar.",
-        });
+        // Crear el canal de ingreso de jugadores solo si el tipo es "Futbol"
+        if (tipo === "Futbol") {
+          await guild.channels.create({
+            name: "ingreso-de-jugadores",
+            type: 0, // Tipo de canal: Texto
+            parent: category.id,
+            topic:
+              "Canal para ingresar jugadores usando el comando /ingresarjugador.",
+          });
+
+          await guild.channels.create({
+            name: "ingreso-de-partidos",
+            type: 0, // Tipo de canal: Texto
+            parent: category.id,
+            topic:
+              "Canal para ingresar resultados usando el comando /ingresarpartido.",
+          });
+        }
 
         // Crear los canales de voz dentro de la categoría
         await guild.channels.create({
@@ -182,12 +194,21 @@ const command: SlashCommand = {
           parent: category.id,
         });
 
-        for (let i = 1; i <= cantidadEquipos; i++) {
+        if (tipo === "FPS") {
           await guild.channels.create({
-            name: `Equipo ${i}`,
-            type: 2, // Tipo de canal: Voz
+            name: "ingreso-de-puntos",
+            type: 0, // Tipo de canal: Texto
             parent: category.id,
+            topic: "Canal para ingresar puntos usando el comando /ingresar.",
           });
+
+          for (let i = 1; i <= cantidadEquipos; i++) {
+            await guild.channels.create({
+              name: `Equipo ${i}`,
+              type: 2, // Tipo de canal: Voz
+              parent: category.id,
+            });
+          }
         }
       }
     } catch (error) {
